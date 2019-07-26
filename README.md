@@ -29,9 +29,16 @@ Implement an User Authentication System in order to access the jokes from the Jo
 Demonstrate your understanding of this week's concepts by answering the following free-form questions. Edit this document to include your answers after each question. Make sure to leave a blank line above and below your answer so it is clear and easy to read by your project manager.
 
 1. What is the purpose of using _sessions_?
-1. What does bcrypt do to help us store passwords in a secure manner.
-1. What does bcrypt do to slow down attackers?
-1. What are the three parts of the JSON Web Token?
+   So that authentication can be persisted so a user doesn't have to provide credentials on every request made to a server.
+
+2. What does bcrypt do to help us store passwords in a secure manner.
+   It hashes the password multiple times so that in the event a potential hacker got ahold of the hash it would be near impossible to crack it.
+
+3. What does bcrypt do to slow down attackers?
+   It can hash the password multiple times.
+
+4. What are the three parts of the JSON Web Token?
+   Header, payload, signature.
 
 ## Project Set Up
 
@@ -61,11 +68,11 @@ Helpful Tip on Testing this Project:
 - [x] Implement the `register` function inside `/config/routes.js`.
 - [x] Implement the `login` function inside `/config/routes.js`.
 - [x] Use JSON Web Tokens for authentication.
-- [ ] Add at least 2 tests for the API endpoints.
+- [x] Add at least 2 tests for the API endpoints.
 
 **Note** The migrations and a database with empty users is already included
 
-- [ ] Add the authentication related code. If everything is done correctly, visiting `/api/jokes` should return a list of jokes.
+- [x] Add the authentication related code. If everything is done correctly, visiting `/api/jokes` should return a list of jokes.
 
 ## Stretch Problem: Build a front end to interface with your User Auth System
 
