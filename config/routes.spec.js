@@ -13,13 +13,24 @@ describe('routes', () => {
         .post('/api/register')
         .send({ username: 'testUser1', password: 'password' })
         .then(res => {
-          console.log('res status', res.status);
+          console.log('res body', res.body);
           expect(res.status).toBe(201);
+        });
+    });
+
+    it('should return a id and username', () => {
+      return request(server)
+        .post('/api/register')
+        .send({ username: 'testUser2', password: 'password' })
+        .then(res => {
+          console.log('res body', res.body);
+          expect(res.body).toHaveProperty('id');
+          expect(res.body).toHaveProperty('username');
         });
     });
   });
 
-  const token = '';
+  let token;
 
   describe('POST /api/login', () => {
     it('should return a status of 200', () => {
@@ -32,13 +43,22 @@ describe('routes', () => {
     });
   });
 
-  describe('POST /api/login', () => {
-    it('should return json ', () => {
+  it('should return a property token ', () => {
+    return request(server)
+      .post('/api/login')
+      .send({ username: 'testUser1', password: 'password' })
+      .then(res => {
+        console.log('token', res.body.token);
+        expect(res.body).toHaveProperty('token');
+      });
+  });
+
+  describe('GET /api/jokes', () => {
+    it('should return a 401 status without a valid token', () => {
       return request(server)
-        .post('/api/login')
-        .send({ username: 'testUser1', password: 'password' })
+        .get('/api/jokes')
         .then(res => {
-          expect(res.body).toHaveProperty('token');
+          expect(res.status).toBe(401);
         });
     });
   });
